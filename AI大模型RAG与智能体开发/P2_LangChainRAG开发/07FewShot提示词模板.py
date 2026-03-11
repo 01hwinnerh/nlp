@@ -18,7 +18,9 @@ few_shot_template = FewShotPromptTemplate(
     input_variables=['input_word']      #声明在前缀或后缀中所需要注入的变量名
 )
 
-prompt_text = few_shot_template.invoke(input={"input_word": "左"})
+prompt_text = few_shot_template.invoke({"input_word": "左"})
+print(prompt_text)
+print(prompt_text.to_string())      #invoke方法返回的是一个对象，需要转化为字符串
 
 model = Tongyi(model="qwen-max")
 print(model.invoke(input=prompt_text))
