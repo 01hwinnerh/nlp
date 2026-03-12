@@ -21,11 +21,11 @@ history_data = [
 model = ChatTongyi(model = "qwen3-max")
 
 #组成链，要求每一个组件都是Runnable接口的子类
-chain = chat_prompt_template | model        #一个组件的输出是下一个组件的输入
+chain = chat_prompt_template | model       #一个组件的输出是下一个组件的输入
 
-#通过链去调用invoke或stream
-res = chain.invoke({"history":history_data})
-print(res.content)
+# #通过链去调用invoke或stream
+# res = chain.invoke({"history":history_data})
+# print(res.content)
 
 #通过stream流式输出
 for chunk in chain.stream({"history":history_data}):
