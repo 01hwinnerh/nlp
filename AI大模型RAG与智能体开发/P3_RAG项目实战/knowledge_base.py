@@ -31,6 +31,7 @@ def save_md5(md5_str:str):
 
 def str_to_md5(input_str:str,encoding='utf-8'):
     """将当前字符串转为 md5 字符串"""
+    """先将字符串转换为bytes字节数组"""
     str_bytes = input_str.encode(encoding=encoding)
 
     md5_obj = hashlib.md5()
@@ -47,7 +48,7 @@ class KnowledgeBaseService(object):
 
         os.makedirs(config.persist_dir,exist_ok=True)
 
-        self.chroma = Chroma(
+        self.chroma = Chroma(  #存储向量的实例，Chroma对象
             collection_name=config.collection_name,
             embedding_function=DashScopeEmbeddings(model="text-embedding-v4"),
             persist_directory=config.persist_dir,
